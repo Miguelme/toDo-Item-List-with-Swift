@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="TodoListSwift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -15,8 +17,90 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter the new ToDo Item!" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HKI-7X-pQs">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="227" id="E11-Zq-2lk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="E11-Zq-2lk"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="E11-Zq-2lk"/>
+                                    </mask>
+                                </variation>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mF4-3H-h2E">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Add">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addToDoItem:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Bpi-k6-Jcx"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8JD-jr-bsV">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mF4-3H-h2E" firstAttribute="top" secondItem="HKI-7X-pQs" secondAttribute="bottom" constant="8" id="4p1-UX-Yd2"/>
+                            <constraint firstAttribute="centerX" secondItem="HKI-7X-pQs" secondAttribute="centerX" constant="-0.5" id="7Y0-w7-4dk"/>
+                            <constraint firstItem="8JD-jr-bsV" firstAttribute="centerX" secondItem="HKI-7X-pQs" secondAttribute="centerX" id="9Bt-Dd-eJn"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="8JD-jr-bsV" secondAttribute="bottom" constant="137" id="a2i-ho-zhE"/>
+                            <constraint firstItem="8JD-jr-bsV" firstAttribute="top" secondItem="mF4-3H-h2E" secondAttribute="bottom" constant="60" id="bS3-t7-yRG"/>
+                            <constraint firstItem="HKI-7X-pQs" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="13" id="k19-iJ-m4o"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mF4-3H-h2E" secondAttribute="trailing" constant="70" id="mik-lT-H3z"/>
+                            <constraint firstItem="8JD-jr-bsV" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="rQc-VO-1RL"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="HKI-7X-pQs"/>
+                                <exclude reference="mF4-3H-h2E"/>
+                                <exclude reference="8JD-jr-bsV"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="7Y0-w7-4dk"/>
+                                <exclude reference="k19-iJ-m4o"/>
+                                <exclude reference="9Bt-Dd-eJn"/>
+                                <exclude reference="bS3-t7-yRG"/>
+                                <exclude reference="rQc-VO-1RL"/>
+                                <exclude reference="4p1-UX-Yd2"/>
+                                <exclude reference="mik-lT-H3z"/>
+                                <exclude reference="a2i-ho-zhE"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="HKI-7X-pQs"/>
+                                <include reference="mF4-3H-h2E"/>
+                                <include reference="8JD-jr-bsV"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="7Y0-w7-4dk"/>
+                                <include reference="k19-iJ-m4o"/>
+                                <include reference="9Bt-Dd-eJn"/>
+                                <include reference="bS3-t7-yRG"/>
+                                <include reference="rQc-VO-1RL"/>
+                                <include reference="4p1-UX-Yd2"/>
+                                <include reference="mik-lT-H3z"/>
+                                <include reference="a2i-ho-zhE"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="8JD-jr-bsV" id="yE6-PT-Rub"/>
+                        <outlet property="toDoItem" destination="HKI-7X-pQs" id="kJF-fz-e2B"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
