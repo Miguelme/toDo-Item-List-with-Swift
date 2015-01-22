@@ -13,6 +13,7 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
     // Outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var toDoItem: UITextField!
+    @IBOutlet weak var noElementsLabel: UILabel!
     
     // Variables
     var items :[String] = []
@@ -43,6 +44,13 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
     func loadData(){
         if let dataOptional = (NSUserDefaults.standardUserDefaults().objectForKey("toDoList") as? [String]){
             self.items = dataOptional
+        }else{
+           println("Not set the toDoList")
+        }
+        
+        if (self.items.count == 0){
+            self.tableView.hidden = true
+            self.noElementsLabel.hidden = false
         }
         
     }
@@ -51,6 +59,10 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
         It saves the data of the toDo item list to the Core Data
     */
     func saveData(){
+        // Sets the display for at least one toDo Item in the list
+        self.tableView.hidden = false
+        self.noElementsLabel.hidden = true
+        // Saves and synchronize to Core Data
         NSUserDefaults.standardUserDefaults().setObject(self.items, forKey: "toDoList")
         NSUserDefaults.standardUserDefaults().synchronize()
     }
@@ -130,6 +142,10 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
             self.items.removeAtIndex(indexPath.row)
             self.saveData()
             self.tableView.reloadData()
+            if (self.items.count == 0) {
+                self.tableView.hidden = true
+                self.noElementsLabel.hidden = false
+            }
         }
     }
     /* 
